@@ -1,6 +1,15 @@
 # Geosite Converter
 
 [![自动更新](https://github.com/JessYi228/geosite-converter/actions/workflows/update.yml/badge.svg)](https://github.com/JessYi228/geosite-converter/actions/workflows/update.yml)
+![100% AI Built](https://img.shields.io/badge/Built_by_AI-100%25-8b5cf6)
+
+> 🤖 **本项目 100% AI 打造。人类负责提需求、授权上线，以及发现「你又理解错了」。**
+>
+> 转换器、网页、测试、自动更新流程和这份 README，均由 AI 编写。
+> 简单来说：**让 AI 写规则，给 AI 分流，再让 AI 写文档解释 AI 写的规则。**
+>
+> 100% AI 打造 ≠ 100% 没有 Bug。发现问题欢迎提 Issue，让 AI 接着改，人类接着监督。
+> 此声明仅指本项目工程；上游域名数据由 **v2fly 社区**维护，功劳不抢，许可照留。
 
 **只自动更新海外 AI 合集，其他分类在静态网站中按需转换。**
 
