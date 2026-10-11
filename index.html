@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Geosite · AI 规则与按需转换</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">GEOSITE CONVERTER</p>
+      <h1>AI 规则，自动更新。<br>其他分类，按需转换。</h1>
+      <p>基于 <a href="https://github.com/v2fly/domain-list-community">v2fly/domain-list-community</a>。纯浏览器转换，无后端、无需登录，不会上传你的选择。</p>
+      <p id="version" class="muted" role="status">正在读取规则版本…</p>
+    </header>
+
+    <section aria-labelledby="ai-title">
+      <h2 id="ai-title">自动更新的 AI 合集</h2>
+      <p id="ai-sources">默认合并国内、海外 AI 分类。请根据实际需求选择分流策略，国内服务不一定需要代理。</p>
+      <label for="surge-url">Surge Rule Set</label>
+      <div class="url-row"><input id="surge-url" readonly><button type="button" data-copy="surge-url">复制</button><a id="surge-link" href="surge/ai.list">查看</a></div>
+      <label for="mihomo-url">mihomo classical YAML</label>
+      <div class="url-row"><input id="mihomo-url" readonly><button type="button" data-copy="mihomo-url">复制</button><a id="mihomo-link" href="mihomo/ai.yaml">查看</a></div>
+      <p id="ai-warning" class="warning" role="status"></p>
+      <details>
+        <summary>客户端配置示例</summary>
+        <p>将 Proxy 替换成已有策略组。AI 规则应放在通用分流规则前面。</p>
+        <h3>Surge</h3><pre id="surge-example"></pre>
+        <h3>mihomo</h3><pre id="mihomo-example"></pre>
+      </details>
+    </section>
+
+    <section aria-labelledby="convert-title">
+      <h2 id="convert-title">其他规则按需转换</h2>
+      <p>输入分类名，一行一个，或用逗号分隔。多个分类会合并、去重。支持 <code>google@cn</code>、<code>google@-cn</code> 和 <code>google@cn@-ads</code>。</p>
+      <form id="convert-form">
+        <div class="catalog-row">
+          <label for="category">查找分类</label>
+          <input id="category" list="catalog" placeholder="例如 openai、netflix、google@cn" autocomplete="off">
+          <datalist id="catalog"></datalist>
+          <button type="button" id="load-catalog">载入分类目录</button>
+          <button type="button" id="add-category">添加到下方</button>
+        </div>
+        <label for="selectors">要合并的分类</label>
+        <textarea id="selectors" rows="4" required placeholder="openai&#10;anthropic&#10;github-copilot"></textarea>
+        <label for="filename">输出文件名（不含扩展名）</label>
+        <input id="filename" value="custom" required pattern="[a-z0-9!\-]+" autocomplete="off">
+        <p class="muted">输出在本机下载，不消耗 GitHub Actions 额度，也不会创建自动更新订阅。规则源快照在上游变化后由定时任务更新。</p>
+        <button id="convert-button" type="submit" class="primary">转换并生成下载</button>
+      </form>
+      <p id="status" role="status" aria-live="polite"></p>
+      <div id="result" hidden>
+        <div class="downloads"><button id="download-surge" type="button">下载 Surge .list</button><button id="download-mihomo" type="button">下载 mihomo .yaml</button><button id="download-report" type="button">下载转换报告</button></div>
+        <details><summary>预览 Surge</summary><textarea id="surge-preview" aria-label="Surge 输出预览" readonly rows="8"></textarea></details>
+        <details><summary>预览 mihomo</summary><textarea id="mihomo-preview" aria-label="mihomo 输出预览" readonly rows="8"></textarea></details>
+        <p id="warning" class="warning"></p>
+      </div>
+    </section>
+    <footer>Surge 不支持等价的域名正则：跳过的规则会明确显示。mihomo 保留 DOMAIN-REGEX（需要支持它的版本）。<br><a href="manifest.json">版本 / AI 转换报告</a> · <a href="NOTICE">上游许可</a> · <a href="LICENSE">项目许可</a></footer>
+  </main>
+</body>
+</html>

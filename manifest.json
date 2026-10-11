@@ -1,0 +1,26 @@
+{
+  "converter": "geosite-converter/v1",
+  "projectRevision": "e7a58c47d3ac6c6380170debaaca9bd0692e95ce",
+  "upstream": {
+    "repository": "https://github.com/v2fly/domain-list-community.git",
+    "revision": "c6adacf29cc4fb05e04651fcf03e00989ef9f797"
+  },
+  "ai": {
+    "name": "ai",
+    "selectors": [
+      "category-ai-!cn",
+      "category-ai-cn"
+    ],
+    "surge": 304,
+    "mihomo": 305,
+    "surgeUnsupportedRegexp": [
+      "^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$"
+    ]
+  },
+  "sourceLists": 1545,
+  "sha256": {
+    "surge/ai.list": "5d28798092cd8b213a5b05daf85c477d315898db9db65b9a931dc4a09c231991",
+    "mihomo/ai.yaml": "e070fde9d3c436416aa6a26f5db57cfb820aafc7b35204481588c2ab18a03560",
+    "source.json": "a2876e2b7cb085fd9a8eedc15f19079564b81180bc06abe940cbc0d14a666842"
+  }
+}

@@ -1,0 +1,38 @@
+:root { font-family: system-ui, -apple-system, sans-serif; line-height: 1.7; color: #202b3d; background: #f3f5fa; --panel: #fff; --border: #d9dfea; --accent: #3655c6; }
+* { box-sizing: border-box; }
+main { max-width: 900px; margin: 48px auto; padding: 0 20px; }
+header { padding: 16px 0 24px; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.9rem); line-height: 1.3; margin: 12px 0 20px; }
+h2 { font-size: 1.3rem; margin-top: 0; }
+h3 { font-size: 1rem; }
+a { color: var(--accent); overflow-wrap: anywhere; }
+.eyebrow { color: var(--accent); letter-spacing: .12em; font-weight: 700; font-size: .8rem; }
+section { padding: 26px; margin-bottom: 24px; background: var(--panel); border: 1px solid var(--border); border-radius: 14px; }
+label { display: block; font-weight: 600; margin: 16px 0 6px; }
+input, textarea, button { font: inherit; }
+input, textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 7px; color: inherit; background: var(--panel); }
+textarea { resize: vertical; }
+button { cursor: pointer; border: 1px solid var(--border); padding: 9px 15px; border-radius: 7px; background: var(--panel); color: inherit; }
+button:hover { border-color: var(--accent); }
+button:disabled { opacity: .6; cursor: wait; }
+button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.url-row { display: flex; align-items: center; gap: 10px; }
+.url-row input { min-width: 0; flex: 1; font-size: .85rem; }
+.url-row button, .url-row a { flex-shrink: 0; }
+.catalog-row button { margin-top: 10px; }
+.muted, footer { color: #66748a; font-size: .9rem; }
+.warning { color: #9d4b0d; overflow-wrap: anywhere; }
+.warning:empty { display: none; }
+summary { cursor: pointer; }
+details { margin-top: 16px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; background: #f3f5fa; border-radius: 7px; font-size: .85rem; }
+code { font-size: .9em; }
+.downloads { display: flex; flex-wrap: wrap; gap: 10px; }
+footer { text-align: center; padding: 10px 0 24px; }
+@media (max-width: 500px) { section { padding: 18px; } main { margin-top: 20px; } .url-row { flex-wrap: wrap; } .url-row input { flex-basis: 100%; } }
+@media (prefers-color-scheme: dark) {
+  :root { color: #e1e7f2; background: #111723; --panel: #1b2434; --border: #39465e; --accent: #9baeff; }
+  .muted, footer { color: #a5b2c8; } .warning { color: #ffbf84; }
+  pre { background: #111723; } button.primary { color: #111723; }
+}
