@@ -1,0 +1,82 @@
+name: Update AI rules and converter site
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'ai.config.json'
+      - 'web/**'
+      - 'scripts/**'
+      - 'test/**'
+      - 'package.json'
+      - 'LICENSE'
+      - 'NOTICE'
+      - '.github/workflows/update.yml'
+  schedule:
+    - cron: '17 2 * * *' # UTC 02:17 / 北京时间 10:17；每天只检查一次
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: geosite-pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check upstream version (skip unchanged scheduled runs)
+        id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: bash scripts/check-update.sh
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.changed == 'true'
+        with:
+          node-version: '22'
+      - name: Tests
+        if: steps.check.outputs.changed == 'true'
+        run: npm test
+      - name: Fetch the checked upstream revision
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: v2fly/domain-list-community
+          ref: ${{ steps.check.outputs.revision }}
+          path: .upstream
+          persist-credentials: false
+      - name: Build AI rules and static converter
+        if: steps.check.outputs.changed == 'true'
+        env:
+          UPSTREAM_REVISION: ${{ steps.check.outputs.revision }}
+        run: npm run build -- --source .upstream/data
+      - name: Configure Pages
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/configure-pages@v5
+      - name: Upload Pages deployment bundle
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+          retention-days: 1
+      - name: Deploy Pages
+        if: steps.check.outputs.changed == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+      # Record publication only after Pages succeeds, so failed deployments are retried.
+      - name: Publish raw subscription files and snapshot
+        if: steps.check.outputs.changed == 'true'
+        env:
+          PUBLISH_DIR: ${{ runner.temp }}/geosite-publish
+        run: bash scripts/publish.sh

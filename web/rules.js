@@ -1,0 +1,128 @@
+// Shared by the browser and Node.js. No dependencies or backend required.
+const types = { domain: "DOMAIN-SUFFIX", full: "DOMAIN", keyword: "DOMAIN-KEYWORD", regexp: "DOMAIN-REGEX" };
+
+export function validateName(value) {
+  if (!/^[a-z0-9!-]+$/.test(value)) throw new Error(`无效列表名：${value}`);
+  return value;
+}
+
+function attribute(value) {
+  if (!/^[a-z0-9!]+$/.test(value)) throw new Error(`无效属性：${value}`);
+  return value;
+}
+
+function filters(tokens) {
+  return tokens.map(token => {
+    if (!token.startsWith("@")) throw new Error(`无效属性筛选：${token}`);
+    const value = token.slice(1).toLowerCase();
+    const negative = value.startsWith("-");
+    return { attribute: attribute(negative ? value.slice(1) : value), negative };
+  });
+}
+
+function matches(entry, conditions) {
+  return conditions.every(filter => entry.attrs.includes(filter.attribute) !== filter.negative);
+}
+
+function identity(entry) {
+  return JSON.stringify([entry.kind, entry.value, entry.attrs]);
+}
+
+export class Database {
+  constructor(files) {
+    this.lists = new Map();
+    this.cache = new Map();
+    if (!Object.keys(files).length) throw new Error("规则源不能为空");
+    for (const [filename, content] of Object.entries(files)) {
+      const name = validateName(filename.toLowerCase());
+      const list = this.ensure(name);
+      content.split(/\r?\n/).forEach((raw, index) => {
+        const line = raw.split("#", 1)[0].trim();
+        if (!line) return;
+        try {
+          this.parse(list, line);
+        } catch (error) {
+          throw new Error(`${filename}:${index + 1}: ${error.message}`);
+        }
+      });
+    }
+  }
+
+  ensure(name) {
+    if (!this.lists.has(name)) this.lists.set(name, { entries: new Map(), includes: [] });
+    return this.lists.get(name);
+  }
+
+  parse(list, line) {
+    const colon = line.indexOf(":");
+    const kind = colon < 0 ? "domain" : line.slice(0, colon).toLowerCase();
+    const parts = (colon < 0 ? line : line.slice(colon + 1)).trim().split(/\s+/);
+    let [value, ...tokens] = parts;
+    if (!value) throw new Error("空规则");
+    if (kind === "include") {
+      list.includes.push({ name: validateName(value.toLowerCase()), filters: filters(tokens) });
+      return;
+    }
+    if (!Object.hasOwn(types, kind)) throw new Error(`未知规则类型：${kind}`);
+    if (kind !== "regexp") {
+      value = value.toLowerCase();
+      if (!/^[a-z0-9.-]+$/.test(value)) throw new Error(`无效域名或关键词：${value}`);
+      if (kind !== "keyword" && (value.length > 253 || value.split(".").some(
+        label => !label || label.length > 63 || label.startsWith("-") || label.endsWith("-")
+      ))) throw new Error(`无效域名：${value}`);
+    }
+    // Preserve Go regex syntax, rather than incorrectly validate it using JavaScript's grammar.
+    const attrs = new Set();
+    const affiliations = new Set();
+    for (const token of tokens) {
+      if (token.startsWith("@")) attrs.add(attribute(token.slice(1).toLowerCase()));
+      else if (token.startsWith("&")) affiliations.add(validateName(token.slice(1).toLowerCase()));
+      else throw new Error(`未知字段：${token}`);
+    }
+    const entry = { kind, value, attrs: [...attrs].sort() };
+    const key = identity(entry);
+    list.entries.set(key, entry);
+    for (const name of affiliations) this.ensure(name).entries.set(key, entry);
+  }
+
+  resolve(name, stack = []) {
+    if (this.cache.has(name)) return this.cache.get(name);
+    const list = this.lists.get(name);
+    if (!list) throw new Error(`列表不存在：${name}`);
+    if (stack.includes(name)) throw new Error(`循环 include：${[...stack, name].join(" → ")}`);
+    const entries = new Map(list.entries);
+    for (const include of list.includes) {
+      for (const [key, entry] of this.resolve(include.name, [...stack, name])) {
+        if (matches(entry, include.filters)) entries.set(key, entry);
+      }
+    }
+    // Retain tagged duplicates/subdomains until after every include/selector filter.
+    this.cache.set(name, entries);
+    return entries;
+  }
+
+  select(selector) {
+    const [name, ...tokens] = selector.toLowerCase().replace(/^geosite:/, "").split("@");
+    const conditions = filters(tokens.map(token => `@${token}`));
+    return [...this.resolve(validateName(name)).values()].filter(entry => matches(entry, conditions));
+  }
+}
+
+export function convert(database, selectors, name = "custom") {
+  validateName(name);
+  if (!selectors.length) throw new Error("请至少选择一个列表");
+  const unique = new Map();
+  for (const selector of selectors) {
+    for (const entry of database.select(selector)) unique.set(`${entry.kind}:${entry.value}`, entry);
+  }
+  const rules = [...unique.entries()].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([, rule]) => rule);
+  const unsupported = rules.filter(rule => rule.kind === "regexp").map(rule => rule.value);
+  const surge = rules.filter(rule => rule.kind !== "regexp").map(rule => `${types[rule.kind]},${rule.value}`);
+  const mihomo = rules.map(rule => `${types[rule.kind]},${rule.value}`);
+  const header = `# Generated by geosite-converter; list: ${name}\n`;
+  return {
+    surge: header + `# Rules: ${surge.length}; omitted regexp: ${unsupported.length}\n` + surge.map(rule => `${rule}\n`).join(""),
+    mihomo: header + (mihomo.length ? "payload:\n" : "payload: []\n") + mihomo.map(rule => `  - ${JSON.stringify(rule)}\n`).join(""),
+    report: { selectors, surge: surge.length, mihomo: mihomo.length, surgeUnsupportedRegexp: unsupported }
+  };
+}
