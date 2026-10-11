@@ -6,6 +6,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { Database, convert, validateName } from "../web/rules.js";
+import { sourceReport } from "./source-report.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const repository = "https://github.com/v2fly/domain-list-community.git";
@@ -54,6 +55,7 @@ try {
   if (process.env.UPSTREAM_REVISION && revision !== process.env.UPSTREAM_REVISION) {
     throw new Error("上游版本与检查版本不同，拒绝发布；请重新运行工作流");
   }
+  const directory = sourceReport(database, files, selectors, revision, result.report);
   if (existsSync(output)) {
     const marker = join(output, "manifest.json");
     if (!existsSync(marker) || JSON.parse(readFileSync(marker, "utf8")).converter !== "geosite-converter/v1") {
@@ -67,7 +69,8 @@ try {
   const generated = {
     [`surge/${config.name}.list`]: result.surge,
     [`mihomo/${config.name}.yaml`]: result.mihomo,
-    "source.json": JSON.stringify({ revision, files }) + "\n"
+    "source.json": JSON.stringify({ revision, files }) + "\n",
+    "AI-SOURCES.md": directory.markdown
   };
   const hashes = {};
   for (const [filename, content] of Object.entries(generated)) {
@@ -78,7 +81,8 @@ try {
   const manifest = {
     converter: "geosite-converter/v1", projectRevision: process.env.GITHUB_SHA || "local",
     upstream: { repository, revision },
-    ai: { name: config.name, ...result.report }, sourceLists: database.lists.size, sha256: hashes
+    ai: { name: config.name, ...result.report, sourceDirectory: directory.names },
+    sourceLists: database.lists.size, sha256: hashes
   };
   writeFileSync(join(stage, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
   writeFileSync(join(stage, ".nojekyll"), "");

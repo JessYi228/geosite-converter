@@ -2,13 +2,13 @@
 
 [![自动更新](https://github.com/JessYi228/geosite-converter/actions/workflows/update.yml/badge.svg)](https://github.com/JessYi228/geosite-converter/actions/workflows/update.yml)
 
-**只自动更新 AI 合集，其他分类在静态网站中按需转换。**
+**只自动更新海外 AI 合集，其他分类在静态网站中按需转换。**
 
 **[打开转换站](https://jessyi228.github.io/geosite-converter/)** · [Surge AI 订阅](https://jessyi228.github.io/geosite-converter/surge/ai.list) · [mihomo AI 订阅](https://jessyi228.github.io/geosite-converter/mihomo/ai.yaml) · [版本与转换报告](https://jessyi228.github.io/geosite-converter/manifest.json)
 
 上游：[v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)。
 
-- **AI 自动订阅**：合并上游国内、海外 AI 分类，输出 Surge Rule Set 和 mihomo `classical` YAML。
+- **海外 AI 自动订阅**：仅整合上游 `category-ai-!cn` 及其递归来源，输出 Surge Rule Set 和 mihomo `classical` YAML；[详细整合目录见第 2 节](#2-海外-ai-合集详细整合目录)。
 - **按需转换站**：浏览器选择一个或多个分类、合并去重、下载，无后端、无需登录。
 - **低开销更新**：每天检查一次上游 commit；上游与工程版本均未变化时跳过测试、构建和部署。
 - **无第三方运行依赖**：构建需要 Node.js 22+，但不需要 `npm install`；网页不依赖 CDN、第三方脚本或 Python 运行时。
@@ -17,11 +17,11 @@
 
 | 需求 | 使用方式 | 是否自动更新 |
 | --- | --- | --- |
-| AI 服务统一分流 | 在 Surge / mihomo 中订阅下方的 AI 合集地址 | 是，按定时检查结果更新 |
+| 海外 AI 服务统一分流 | 在 Surge / mihomo 中订阅下方的 AI 合集地址 | 是，按定时检查结果更新 |
 | 其他服务按需分流 | 打开转换站，选择分类、筛选属性、合并后下载 | 否，需要回到页面重新转换 |
 | 修改 AI 收录范围 | 编辑 `ai.config.json` 并提交 | 是，提交会触发重新发布 |
 
-**AI 合集默认包含国内和海外服务，不代表全部服务都应该走代理。** 仅代理海外 AI 时，将配置中的 `lists` 改为 `["category-ai-!cn"]`。
+**本订阅只使用海外 AI 分类，不合并国内 AI 分类。** 已列出每个来源文件、递归 include 以及入口直接收录的服务，便于核对实际整合范围。
 
 > 兼容性：Surge 无法等价表达任意域名正则，转换时会明确跳过并报告；mihomo 输出使用 `classical`，保留 `DOMAIN-REGEX`。两种格式均不绑定策略组。
 
@@ -55,33 +55,181 @@ https://raw.githubusercontent.com/JessYi228/geosite-converter/rules/mihomo/ai.ya
 
 `main` 保存工程源码，`rules` 只保存 AI 成品、静态页面和原始规则快照。提交由机器人完成，不会反过来触发构建。使用官方 Pages 部署，而不是依赖机器人推送分支触发 Pages 自动构建。
 
-## 2. AI 合集范围
+## 2. 海外 AI 合集：详细整合目录
+
+**唯一入口是 [`data/category-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/category-ai-!cn)，不合并 `category-ai-cn`。** 国内分类中的 DeepSeek、豆包、通义、智谱等不通过该国内分类加入本订阅。其他分类仍可在转换站按需选择，与自动 AI 订阅无关。
 
 默认配置在 [`ai.config.json`](ai.config.json)：
 
 ```json
 {
   "name": "ai",
-  "lists": ["category-ai-!cn", "category-ai-cn"],
+  "lists": ["category-ai-!cn"],
   "extraRules": []
 }
 ```
 
-这两个分类由上游维护，覆盖 OpenAI、Anthropic、Gemini/DeepMind、Copilot、Cursor、Perplexity、DeepSeek、通义、豆包等相关服务。具体内容以记录的上游版本为准，工程不另行维护一份厂商清单，也不强行加入整个 Google、Microsoft 等大类。
+“海外”沿用上游分类，不按厂商国籍自行判断。因此上游列入海外分类的 Coze / Trae、Dola / Cici、`kimi.ai`、`moonshot.ai`、`minimax.io` 等海外端点仍保留；不会因此加入它们的国内分类或国内端点。上游分类也含辅助资源，例如 Comfy 的绘世启动器、Envato 的资源域名，下面明确列出，不把它们隐藏成笼统的“AI 网站”。
 
-**国内、海外服务默认在同一个 AI 合集中；这并不意味着它们都应该走代理。** 如果主要用于海外 AI 代理，只保留：
+### 2.1 完整递归目录
 
-```json
-"lists": ["category-ai-!cn"]
+下面目录对应上游版本 [`c6adacf29cc4`](https://github.com/v2fly/domain-list-community/commit/c6adacf29cc4fb05e04651fcf03e00989ef9f797)：**20 个一级 include、2 个二级 include，加上入口，共 23 个来源文件**。入口还直接收录 **55 条**规则，不能只展开 include 而漏掉这些条目。
+
+```text
+data/category-ai-!cn
+├── anthropic
+├── bytedance-ai-!cn
+│   └── dola
+├── cerebras
+├── comfy
+│   └── comfy-ui-launcher
+├── cursor
+├── elevenlabs
+├── envato
+├── github-copilot
+├── google-deepmind
+├── groq
+├── huggingface
+├── jetbrains-ai
+├── liveperson
+├── manus
+├── openai
+├── perplexity
+├── poe
+├── windsurf
+├── xai
+└── youmind
 ```
 
-也可添加其他分类或筛选项，如 `openai`、`google@cn@-ads`。需要补充上游尚未收录的域名时，使用 `extraRules`，每个字符串是一条规则：
+**[查看随每次部署自动更新的完整来源目录与全部原始规则](https://github.com/JessYi228/geosite-converter/blob/rules/AI-SOURCES.md)**。该文档由实际配置和同版本上游源码生成，不是另维护一份可能漏项的厂商清单；同时发布在 [转换站 AI-SOURCES.md](https://jessyi228.github.io/geosite-converter/AI-SOURCES.md)。README 下面的目录与数量是上述版本的可核对快照，最新目录请以上述自动文档为准。
+
+### 2.2 一级整合来源与覆盖范围
+
+规则数按每个来源完整递归展开统计；最终结果仍会精确去重。
+
+| 服务 / 项目 | 上游来源文件 | 展开规则数 | 覆盖说明 |
+| --- | --- | ---: | --- |
+| Anthropic / Claude | [`data/anthropic`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/anthropic) | 9 | Claude 主站、API、相关资源域名 |
+| ByteDance 海外 AI | [`data/bytedance-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/bytedance-ai-!cn) | 7 | Coze、Trae / MarsCode，以及递归包含的 Dola / Cici |
+| Cerebras | [`data/cerebras`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/cerebras) | 1 | Cerebras |
+| Comfy / ComfyUI | [`data/comfy`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/comfy) | 4 | Comfy 主站、开发与注册资源；递归包含绘世启动器 |
+| Cursor | [`data/cursor`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/cursor) | 4 | Cursor |
+| ElevenLabs | [`data/elevenlabs`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/elevenlabs) | 2 | ElevenLabs |
+| Envato | [`data/envato`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/envato) | 4 | Envato 及其资源，按上游范围含 themeforest.net |
+| GitHub Copilot | [`data/github-copilot`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/github-copilot) | 6 | Copilot 代理、Workspace、附件与遥测域名 |
+| Google AI / DeepMind | [`data/google-deepmind`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/google-deepmind) | 46 | Gemini、AI Studio、NotebookLM、Jules、Code Assist、Labs / Flow、Opal、Antigravity、Stitch |
+| Groq | [`data/groq`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/groq) | 1 | Groq |
+| Hugging Face | [`data/huggingface`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/huggingface) | 3 | Hugging Face |
+| JetBrains AI | [`data/jetbrains-ai`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/jetbrains-ai) | 3 | JetBrains AI / Grazie |
+| LivePerson | [`data/liveperson`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/liveperson) | 2 | LivePerson |
+| Manus | [`data/manus`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/manus) | 2 | Manus 及 CDN |
+| OpenAI | [`data/openai`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/openai) | 23 | ChatGPT、API、Sora、静态资源、语音与上游标注的追踪域名；含 1 条正则 |
+| Perplexity | [`data/perplexity`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/perplexity) | 5 | Perplexity |
+| Poe | [`data/poe`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/poe) | 2 | Poe |
+| Windsurf | [`data/windsurf`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/windsurf) | 4 | Windsurf |
+| xAI / Grok | [`data/xai`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/xai) | 4 | Grok、xAI、Grokipedia |
+| YouMind | [`data/youmind`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/youmind) | 3 | YouMind |
+
+### 2.3 二级递归来源
+
+| 被谁 include | 递归来源 | 规则数 | 内容 |
+| --- | --- | ---: | --- |
+| `bytedance-ai-!cn` | [`data/dola`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/dola) | 4 | `cici.com`、`ciciai.com`、`ciciaicdn.com`、`dola.com`，带 `@!cn` 属性 |
+| `comfy` | [`data/comfy-ui-launcher`](https://github.com/v2fly/domain-list-community/blob/c6adacf29cc4fb05e04651fcf03e00989ef9f797/data/comfy-ui-launcher) | 1 | 上游备注为“绘世启动器”：`oystermercury.top` |
+
+### 2.4 入口中直接收录的服务（全部 55 条）
+
+这部分没有单独的 include 文件，直接写在 `category-ai-!cn`。包含 CodeRabbit、Cohere、Microsoft Copilot、DeepWiki、Jasper / Clipdrop、Kimi / Moonshot 海外端点、Meta AI，以及 Midjourney、Mistral、OpenRouter、Ollama、LM Studio、Devin、Kiro、Dify、LangChain 等。完整原始条目如下，不省略为“等”：
+
+```text
+# CodeRabbit
+coderabbit.ai
+coderabbit.gallery.vsassets.io
+
+# Cohere
+cohere.ai
+cohere.com
+
+# Copilot
+copilot-stg.com
+copilot.cloud.microsoft
+copilot.com
+copilot.microsoft.com
+
+# DeepWiki
+deepwiki.com
+deepwiki.org
+
+# Jasper
+clipdrop.co
+jasper.ai
+
+# Kimi/Moonshot
+kimi.ai
+moonshot.ai
+
+# Meta
+meta.ai
+metaaivm.com
+muse.ai
+
+agentclientprotocol.com
+anythingllm.com
+arena.ai
+chutes.ai
+clawhub.ai
+crewai.com
+devin.ai
+diabrowser.com
+diabrowser.engineering
+dify.ai
+dreamgen.com
+duck.ai
+gateway.ai.cloudflare.com
+h2o.ai
+kiro.dev
+langchain.com
+lmstudio.ai
+lovart.ai
+midjourney.com
+minimax.io
+mistral.ai
+mozilla.ai
+notegpt.io
+novelai.net
+ollama.com
+openart.ai
+openclaw.ai
+opencode.ai
+openrouter.ai
+openspec.dev
+plannotator.ai
+qoder.com
+sider.ai
+spicywriter.com
+syntx.ai
+talkai.info
+tapnow.ai
+tripo3d.ai
+```
+
+### 2.5 输出数量与兼容差异
+
+上述版本共整合 **190 条**规则：mihomo 保留全部 **190 条**，Surge 输出 **189 条**。Surge 唯一跳过的是来自 `openai` 的下面这条正则，不会擅自改写成宽泛后缀：
+
+```text
+^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$
+```
+
+动态数量与校验和见 [manifest.json](https://jessyi228.github.io/geosite-converter/manifest.json)。按上游原样保留标注的广告 / 遥测等属性规则，不默认额外过滤，以免隐性改变上游覆盖范围。
+
+需要补充上游尚未收录的海外端点时，可在自己的 Fork 的 `extraRules` 中逐条添加，例如：
 
 ```json
 "extraRules": ["example.ai", "full:api.example.ai"]
 ```
 
-修改配置并提交后即触发构建；分类变更随上游跟进。合并按规则类型和内容精确去重，不在属性筛选之前裁剪子域名。
+修改配置并提交后触发构建；后续上游分类变化会自动跟进。合并按规则类型和内容精确去重，不在属性筛选之前裁剪子域名。
 
 ## 3. 客户端配置
 
@@ -184,6 +332,7 @@ dist/
 ├── mihomo/ai.yaml
 ├── source.json        # 未展开的原始规则快照
 ├── manifest.json      # 上游 commit、工程版本、AI 统计、跳过正则、SHA-256
+├── AI-SOURCES.md      # 同版本自动生成的完整来源目录、递归 include 与原始规则
 ├── LICENSE / NOTICE
 └── .nojekyll
 ```

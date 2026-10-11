@@ -7,8 +7,43 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { Database, convert } from "../web/rules.js";
+import { sourceReport } from "../scripts/source-report.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
+
+test("default AI subscription includes only the overseas category", () => {
+  const config = JSON.parse(readFileSync(join(root, "ai.config.json"), "utf8"));
+  assert.deepEqual(config.lists, ["category-ai-!cn"]);
+  assert.deepEqual(config.extraRules, []);
+  const database = new Database({
+    "category-ai-!cn": "include:openai\ninclude:anthropic",
+    "category-ai-cn": "include:deepseek\ninclude:doubao",
+    openai: "openai.com", anthropic: "anthropic.com",
+    deepseek: "deepseek.com", doubao: "doubao.com"
+  });
+  const result = convert(database, config.lists, config.name);
+  assert.match(result.surge, /openai.com/);
+  assert.match(result.surge, /anthropic.com/);
+  assert.doesNotMatch(result.surge, /deepseek|doubao/);
+});
+
+test("source report traces recursive directories and retains direct rules and filters", () => {
+  const files = { overseas: "include:child @-cn\nroot.ai", child: "include:nested\nchild.ai",
+    nested: "nested.ai @!cn", domestic: "domestic.ai" };
+  const database = new Database(files);
+  const output = sourceReport(database, files, ["overseas"], "a".repeat(40), convert(database, ["overseas"]).report);
+  assert.deepEqual(output.names, ["overseas", "child", "nested"]);
+  assert.match(output.markdown, /  child @-cn\n    nested/);
+  assert.match(output.markdown, /nested.ai @!cn/);
+  assert.match(output.markdown, /blob\/a{40}\/data\/nested/);
+  assert.doesNotMatch(output.markdown, /domestic/);
+  const affiliated = { root: "include:virtual", donor: "foreign.ai &virtual" };
+  const affiliationDatabase = new Database(affiliated);
+  const affiliationOutput = sourceReport(affiliationDatabase, affiliated, ["root"], "unknown", convert(affiliationDatabase, ["root"]).report);
+  assert.deepEqual(affiliationOutput.names, ["root", "virtual", "donor"]);
+  assert.match(affiliationOutput.markdown, /&virtual 归属来源/);
+  assert.match(affiliationOutput.markdown, /foreign.ai &virtual/);
+});
 
 test("formats, filtered recursive includes, affiliations and regex escaping", () => {
   const database = new Database({
@@ -116,6 +151,8 @@ test("build publishes only AI, snapshot, hashes and static site; failed rebuild 
     const before = readFileSync(join(output, "manifest.json"), "utf8");
     const manifest = JSON.parse(before);
     assert.equal(manifest.ai.surge, 4);
+    assert.deepEqual(manifest.ai.sourceDirectory, ["one", "two", "local-ai-extra"]);
+    assert.match(readFileSync(join(output, "AI-SOURCES.md"), "utf8"), /include:one @-ads/);
     assert.deepEqual(readdirSync(join(output, "surge")), ["ai.list"]);
     assert.deepEqual(readdirSync(join(output, "mihomo")), ["ai.yaml"]);
     assert.ok(existsSync(join(output, "index.html")));
@@ -179,7 +216,7 @@ test("first publication, repeat no-op and unchanged schedule checks use no netwo
       const output = join(work, "dist");
       mkdirSync(join(output, "surge"), { recursive: true });
       mkdirSync(join(output, "mihomo"), { recursive: true });
-      for (const name of ["index.html", "app.js", "rules.js", "style.css", "source.json", "LICENSE", "NOTICE", ".nojekyll", "surge/ai.list", "mihomo/ai.yaml"]) {
+      for (const name of ["index.html", "app.js", "rules.js", "style.css", "source.json", "AI-SOURCES.md", "LICENSE", "NOTICE", ".nojekyll", "surge/ai.list", "mihomo/ai.yaml"]) {
         writeFileSync(join(output, name), "fixture");
       }
       writeFileSync(join(output, "manifest.json"), JSON.stringify({ upstream: { revision }, projectRevision: "project-test" }));

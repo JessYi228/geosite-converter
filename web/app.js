@@ -17,7 +17,7 @@ const manifestPromise = fetchJSON("manifest.json").then(value => {
   manifest = value;
   const revision = manifest.upstream.revision;
   $("version").textContent = `上游版本 ${revision.slice(0, 12)} · ${manifest.sourceLists} 个原始分类 · 转换在浏览器完成`;
-  $("ai-sources").textContent = `合并来源：${manifest.ai.selectors.join(" + ")}。默认包含国内、海外 AI 服务；国内服务不一定需要代理，请自行选择策略。`;
+  $("ai-sources").textContent = `合并来源：${manifest.ai.selectors.join(" + ")}。本仓库默认只订阅海外 AI 分类，不合并 category-ai-cn；具体域名以来源目录和当前版本为准。`;
   const surgeURL = new URL(`surge/${manifest.ai.name}.list`, location.href).href;
   const mihomoURL = new URL(`mihomo/${manifest.ai.name}.yaml`, location.href).href;
   $("surge-url").value = surgeURL;

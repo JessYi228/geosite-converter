@@ -40,7 +40,7 @@ export class Database {
         const line = raw.split("#", 1)[0].trim();
         if (!line) return;
         try {
-          this.parse(list, line);
+          this.parse(list, line, name);
         } catch (error) {
           throw new Error(`${filename}:${index + 1}: ${error.message}`);
         }
@@ -49,11 +49,11 @@ export class Database {
   }
 
   ensure(name) {
-    if (!this.lists.has(name)) this.lists.set(name, { entries: new Map(), includes: [] });
+    if (!this.lists.has(name)) this.lists.set(name, { entries: new Map(), includes: [], donors: new Set() });
     return this.lists.get(name);
   }
 
-  parse(list, line) {
+  parse(list, line, sourceName) {
     const colon = line.indexOf(":");
     const kind = colon < 0 ? "domain" : line.slice(0, colon).toLowerCase();
     const parts = (colon < 0 ? line : line.slice(colon + 1)).trim().split(/\s+/);
@@ -82,7 +82,11 @@ export class Database {
     const entry = { kind, value, attrs: [...attrs].sort() };
     const key = identity(entry);
     list.entries.set(key, entry);
-    for (const name of affiliations) this.ensure(name).entries.set(key, entry);
+    for (const name of affiliations) {
+      const target = this.ensure(name);
+      target.entries.set(key, entry);
+      target.donors.add(sourceName);
+    }
   }
 
   resolve(name, stack = []) {

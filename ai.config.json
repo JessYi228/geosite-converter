@@ -1,8 +1,7 @@
 {
   "name": "ai",
   "lists": [
-    "category-ai-!cn",
-    "category-ai-cn"
+    "category-ai-!cn"
   ],
   "extraRules": []
 }

@@ -24,7 +24,7 @@ fi
 git rm -rf --ignore-unmatch .
 cp -a "$PUBLISH_DIR/." .
 # Explicit paths: never accidentally publish the untracked .upstream checkout.
-git add index.html app.js rules.js style.css source.json manifest.json surge mihomo LICENSE NOTICE .nojekyll
+git add index.html app.js rules.js style.css source.json manifest.json AI-SOURCES.md surge mihomo LICENSE NOTICE .nojekyll
 git config user.name 'github-actions[bot]'
 git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 if ! git diff --cached --quiet; then
