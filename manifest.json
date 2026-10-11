@@ -1,6 +1,6 @@
 {
   "converter": "geosite-converter/v1",
-  "projectRevision": "e7a58c47d3ac6c6380170debaaca9bd0692e95ce",
+  "projectRevision": "d5d903e5d390b18a603ef0b670522e892bef0860",
   "upstream": {
     "repository": "https://github.com/v2fly/domain-list-community.git",
     "revision": "c6adacf29cc4fb05e04651fcf03e00989ef9f797"
@@ -8,19 +8,44 @@
   "ai": {
     "name": "ai",
     "selectors": [
-      "category-ai-!cn",
-      "category-ai-cn"
+      "category-ai-!cn"
     ],
-    "surge": 304,
-    "mihomo": 305,
+    "surge": 189,
+    "mihomo": 190,
     "surgeUnsupportedRegexp": [
       "^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$"
+    ],
+    "sourceDirectory": [
+      "category-ai-!cn",
+      "anthropic",
+      "bytedance-ai-!cn",
+      "dola",
+      "cerebras",
+      "comfy",
+      "comfy-ui-launcher",
+      "cursor",
+      "elevenlabs",
+      "envato",
+      "github-copilot",
+      "google-deepmind",
+      "groq",
+      "huggingface",
+      "jetbrains-ai",
+      "liveperson",
+      "manus",
+      "openai",
+      "perplexity",
+      "poe",
+      "windsurf",
+      "xai",
+      "youmind"
     ]
   },
   "sourceLists": 1545,
   "sha256": {
-    "surge/ai.list": "5d28798092cd8b213a5b05daf85c477d315898db9db65b9a931dc4a09c231991",
-    "mihomo/ai.yaml": "e070fde9d3c436416aa6a26f5db57cfb820aafc7b35204481588c2ab18a03560",
-    "source.json": "a2876e2b7cb085fd9a8eedc15f19079564b81180bc06abe940cbc0d14a666842"
+    "surge/ai.list": "254eecd32a0a7f3bafad5b4678bc68c7551398b23439d7954af28ca599812dee",
+    "mihomo/ai.yaml": "36b20dba9559fbb5acfc1c6d49f77d163b8a68625b74cd04fdd248178185c392",
+    "source.json": "a2876e2b7cb085fd9a8eedc15f19079564b81180bc06abe940cbc0d14a666842",
+    "AI-SOURCES.md": "1f3c854ee2be15ac96a314c7616fa4d30ae75f7fcd65c83cfc9810e35fb43c0f"
   }
 }

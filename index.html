@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Geosite · AI 规则与按需转换</title>
+  <title>Geosite · 海外 AI 规则与按需转换</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="app.js"></script>
 </head>
@@ -12,14 +12,15 @@
   <main>
     <header>
       <p class="eyebrow">GEOSITE CONVERTER</p>
-      <h1>AI 规则，自动更新。<br>其他分类，按需转换。</h1>
+      <h1>海外 AI，自动更新。<br>其他分类，按需转换。</h1>
       <p>基于 <a href="https://github.com/v2fly/domain-list-community">v2fly/domain-list-community</a>。纯浏览器转换，无后端、无需登录，不会上传你的选择。</p>
       <p id="version" class="muted" role="status">正在读取规则版本…</p>
     </header>
 
     <section aria-labelledby="ai-title">
-      <h2 id="ai-title">自动更新的 AI 合集</h2>
-      <p id="ai-sources">默认合并国内、海外 AI 分类。请根据实际需求选择分流策略，国内服务不一定需要代理。</p>
+      <h2 id="ai-title">自动更新的海外 AI 合集</h2>
+      <p id="ai-sources">仅整合上游海外 AI 分类 category-ai-!cn，不合并国内 AI 分类。</p>
+      <p><a href="AI-SOURCES.md">完整整合目录、递归 include 与原始规则（随上游更新）</a></p>
       <label for="surge-url">Surge Rule Set</label>
       <div class="url-row"><input id="surge-url" readonly><button type="button" data-copy="surge-url">复制</button><a id="surge-link" href="surge/ai.list">查看</a></div>
       <label for="mihomo-url">mihomo classical YAML</label>
