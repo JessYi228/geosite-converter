@@ -1,6 +1,6 @@
 {
   "converter": "geosite-converter/v1",
-  "projectRevision": "d5d903e5d390b18a603ef0b670522e892bef0860",
+  "projectRevision": "cd92e138d7863bab8a700a5658028d4ef237721c",
   "upstream": {
     "repository": "https://github.com/v2fly/domain-list-community.git",
     "revision": "c6adacf29cc4fb05e04651fcf03e00989ef9f797"
