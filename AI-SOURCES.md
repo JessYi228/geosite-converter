@@ -2,9 +2,9 @@
 
 此文件由当前配置和上游快照自动生成，与订阅文件使用相同版本。
 
-- 上游版本：`10c47db24284b161d45b342247cfb47206590bf6`
+- 上游版本：`435cb8725922d3d3c0e1684ff6224b59952a400d`
 - 入口：`category-ai-!cn`
-- Surge：192 条；mihomo：193 条。
+- Surge：193 条；mihomo：194 条。
 - 来源目录：23 个（含入口）。
 
 ## 递归 include 与归属来源目录
@@ -41,29 +41,29 @@ category-ai-!cn
 
 | 来源目录 | 直接规则 | 递归展开规则 |
 | --- | ---: | ---: |
-| [`data/category-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/category-ai-!cn) | 56 | 193 |
-| [`data/anthropic`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/anthropic) | 9 | 9 |
-| [`data/bytedance-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/bytedance-ai-!cn) | 3 | 7 |
-| [`data/dola`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/dola) | 4 | 4 |
-| [`data/cerebras`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/cerebras) | 1 | 1 |
-| [`data/comfy`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/comfy) | 3 | 4 |
-| [`data/comfy-ui-launcher`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/comfy-ui-launcher) | 1 | 1 |
-| [`data/cursor`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/cursor) | 5 | 5 |
-| [`data/elevenlabs`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/elevenlabs) | 2 | 2 |
-| [`data/envato`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/envato) | 4 | 4 |
-| [`data/github-copilot`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/github-copilot) | 6 | 6 |
-| [`data/google-deepmind`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/google-deepmind) | 46 | 46 |
-| [`data/groq`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/groq) | 1 | 1 |
-| [`data/huggingface`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/huggingface) | 3 | 3 |
-| [`data/jetbrains-ai`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/jetbrains-ai) | 3 | 3 |
-| [`data/liveperson`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/liveperson) | 2 | 2 |
-| [`data/manus`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/manus) | 2 | 2 |
-| [`data/openai`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/openai) | 24 | 24 |
-| [`data/perplexity`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/perplexity) | 5 | 5 |
-| [`data/poe`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/poe) | 2 | 2 |
-| [`data/windsurf`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/windsurf) | 4 | 4 |
-| [`data/xai`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/xai) | 4 | 4 |
-| [`data/youmind`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/youmind) | 3 | 3 |
+| [`data/category-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/category-ai-!cn) | 57 | 194 |
+| [`data/anthropic`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/anthropic) | 9 | 9 |
+| [`data/bytedance-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/bytedance-ai-!cn) | 3 | 7 |
+| [`data/dola`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/dola) | 4 | 4 |
+| [`data/cerebras`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/cerebras) | 1 | 1 |
+| [`data/comfy`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/comfy) | 3 | 4 |
+| [`data/comfy-ui-launcher`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/comfy-ui-launcher) | 1 | 1 |
+| [`data/cursor`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/cursor) | 5 | 5 |
+| [`data/elevenlabs`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/elevenlabs) | 2 | 2 |
+| [`data/envato`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/envato) | 4 | 4 |
+| [`data/github-copilot`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/github-copilot) | 6 | 6 |
+| [`data/google-deepmind`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/google-deepmind) | 46 | 46 |
+| [`data/groq`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/groq) | 1 | 1 |
+| [`data/huggingface`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/huggingface) | 3 | 3 |
+| [`data/jetbrains-ai`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/jetbrains-ai) | 3 | 3 |
+| [`data/liveperson`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/liveperson) | 2 | 2 |
+| [`data/manus`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/manus) | 2 | 2 |
+| [`data/openai`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/openai) | 24 | 24 |
+| [`data/perplexity`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/perplexity) | 5 | 5 |
+| [`data/poe`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/poe) | 2 | 2 |
+| [`data/windsurf`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/windsurf) | 4 | 4 |
+| [`data/xai`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/xai) | 4 | 4 |
+| [`data/youmind`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/youmind) | 3 | 3 |
 
 ## Surge 跳过的正则
 
@@ -77,7 +77,7 @@ category-ai-!cn
 
 ### category-ai-!cn
 
-[`data/category-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/category-ai-!cn)
+[`data/category-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/category-ai-!cn)
 
 ```text
 include:anthropic
@@ -153,6 +153,7 @@ kiro.dev
 langchain.com
 lmstudio.ai
 lovart.ai
+magnific.com
 midjourney.com
 minimax.io
 mistral.ai
@@ -177,7 +178,7 @@ tripo3d.ai
 
 ### anthropic
 
-[`data/anthropic`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/anthropic)
+[`data/anthropic`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/anthropic)
 
 ```text
 anthropic.com
@@ -195,7 +196,7 @@ full:servd-anthropic-website.b-cdn.net
 
 ### bytedance-ai-!cn
 
-[`data/bytedance-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/bytedance-ai-!cn)
+[`data/bytedance-ai-!cn`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/bytedance-ai-!cn)
 
 ```text
 include:dola
@@ -210,7 +211,7 @@ trae.ai @!cn
 
 ### dola
 
-[`data/dola`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/dola)
+[`data/dola`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/dola)
 
 ```text
 # Dola, formly ciciai, an AI service of bytedance
@@ -222,7 +223,7 @@ dola.com @!cn
 
 ### cerebras
 
-[`data/cerebras`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/cerebras)
+[`data/cerebras`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/cerebras)
 
 ```text
 cerebras.ai
@@ -230,7 +231,7 @@ cerebras.ai
 
 ### comfy
 
-[`data/comfy`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/comfy)
+[`data/comfy`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/comfy)
 
 ```text
 include:comfy-ui-launcher
@@ -246,7 +247,7 @@ comfyregistry.org
 
 ### comfy-ui-launcher
 
-[`data/comfy-ui-launcher`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/comfy-ui-launcher)
+[`data/comfy-ui-launcher`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/comfy-ui-launcher)
 
 ```text
 # 绘世启动器
@@ -255,7 +256,7 @@ oystermercury.top
 
 ### cursor
 
-[`data/cursor`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/cursor)
+[`data/cursor`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/cursor)
 
 ```text
 cursor-cdn.com
@@ -267,7 +268,7 @@ cursorvm.com
 
 ### elevenlabs
 
-[`data/elevenlabs`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/elevenlabs)
+[`data/elevenlabs`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/elevenlabs)
 
 ```text
 elevenlabs.com
@@ -276,7 +277,7 @@ elevenlabs.io
 
 ### envato
 
-[`data/envato`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/envato)
+[`data/envato`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/envato)
 
 ```text
 envato-static.com
@@ -287,7 +288,7 @@ themeforest.net
 
 ### github-copilot
 
-[`data/github-copilot`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/github-copilot)
+[`data/github-copilot`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/github-copilot)
 
 ```text
 githubcopilot.com
@@ -305,7 +306,7 @@ full:copilot-telemetry.githubusercontent.com @telemetry
 
 ### google-deepmind
 
-[`data/google-deepmind`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/google-deepmind)
+[`data/google-deepmind`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/google-deepmind)
 
 ```text
 # Google DeepMind
@@ -381,7 +382,7 @@ stitch.withgoogle.com
 
 ### groq
 
-[`data/groq`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/groq)
+[`data/groq`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/groq)
 
 ```text
 groq.com
@@ -389,7 +390,7 @@ groq.com
 
 ### huggingface
 
-[`data/huggingface`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/huggingface)
+[`data/huggingface`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/huggingface)
 
 ```text
 hf.co
@@ -399,7 +400,7 @@ huggingface.co
 
 ### jetbrains-ai
 
-[`data/jetbrains-ai`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/jetbrains-ai)
+[`data/jetbrains-ai`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/jetbrains-ai)
 
 ```text
 grazie.ai
@@ -409,7 +410,7 @@ jetbrains.ai
 
 ### liveperson
 
-[`data/liveperson`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/liveperson)
+[`data/liveperson`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/liveperson)
 
 ```text
 liveperson.net
@@ -418,7 +419,7 @@ lpsnmedia.net
 
 ### manus
 
-[`data/manus`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/manus)
+[`data/manus`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/manus)
 
 ```text
 manus.im
@@ -427,7 +428,7 @@ manuscdn.com
 
 ### openai
 
-[`data/openai`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/openai)
+[`data/openai`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/openai)
 
 ```text
 # Main domain
@@ -465,7 +466,7 @@ turn.livekit.cloud
 
 ### perplexity
 
-[`data/perplexity`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/perplexity)
+[`data/perplexity`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/perplexity)
 
 ```text
 perplexity.ai
@@ -478,7 +479,7 @@ full:pplx-res.cloudinary.com
 
 ### poe
 
-[`data/poe`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/poe)
+[`data/poe`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/poe)
 
 ```text
 poe.com
@@ -487,7 +488,7 @@ poecdn.net
 
 ### windsurf
 
-[`data/windsurf`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/windsurf)
+[`data/windsurf`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/windsurf)
 
 ```text
 codeium.com
@@ -498,7 +499,7 @@ windsurf.com
 
 ### xai
 
-[`data/xai`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/xai)
+[`data/xai`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/xai)
 
 ```text
 grok.com
@@ -509,7 +510,7 @@ x.ai
 
 ### youmind
 
-[`data/youmind`](https://github.com/v2fly/domain-list-community/blob/10c47db24284b161d45b342247cfb47206590bf6/data/youmind)
+[`data/youmind`](https://github.com/v2fly/domain-list-community/blob/435cb8725922d3d3c0e1684ff6224b59952a400d/data/youmind)
 
 ```text
 # Youmind
