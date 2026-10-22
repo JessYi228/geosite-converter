@@ -3,7 +3,7 @@
   "projectRevision": "cd92e138d7863bab8a700a5658028d4ef237721c",
   "upstream": {
     "repository": "https://github.com/v2fly/domain-list-community.git",
-    "revision": "e8f6d1e5c4a01cda943c0784ffa834340eeab5ae"
+    "revision": "5b6a77d14fb904a1255f02e2e1b2bcc36ed31f83"
   },
   "ai": {
     "name": "ai",
@@ -41,11 +41,11 @@
       "youmind"
     ]
   },
-  "sourceLists": 1549,
+  "sourceLists": 1551,
   "sha256": {
     "surge/ai.list": "870fdbf15470911754496fb3e1abdc1959b9c3362dbbdfd60d9f7e57d8b3fed8",
     "mihomo/ai.yaml": "bf6d649073804bf2ae425e826ab1f5860d1215888ac1a5773372d7c9b63a54ed",
-    "source.json": "600b32af7e6038727b0c81fe32144b2f95d8a4805b27351c39933f0fb2489552",
-    "AI-SOURCES.md": "27578d1c9d635ef4cc1da1a9305371a78492f5beda2e4f6e9bfa7f180827eb8d"
+    "source.json": "4d4ce101f1db321c16f88661a80f835d4301113fdf43f0229f2c25ecf5c1866c",
+    "AI-SOURCES.md": "d38f65887fd48a2aadc978edb556739a99484fdff9b22eab1d35f0a64ea4012f"
   }
 }
