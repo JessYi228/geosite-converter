@@ -3,15 +3,15 @@
   "projectRevision": "cd92e138d7863bab8a700a5658028d4ef237721c",
   "upstream": {
     "repository": "https://github.com/v2fly/domain-list-community.git",
-    "revision": "6766d09f4a951f4f11d822891a9736606cd910ac"
+    "revision": "e8d7a10a15bf662c927a40a3aa680bae86379608"
   },
   "ai": {
     "name": "ai",
     "selectors": [
       "category-ai-!cn"
     ],
-    "surge": 215,
-    "mihomo": 216,
+    "surge": 217,
+    "mihomo": 218,
     "surgeUnsupportedRegexp": [
       "^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$"
     ],
@@ -43,9 +43,9 @@
   },
   "sourceLists": 1555,
   "sha256": {
-    "surge/ai.list": "e391bea3f93f709c50017526d9d6254f5f454d7bd4330cd3408405a6bdc9738e",
-    "mihomo/ai.yaml": "951ea74bdb11caaee03037d72f7dc3c68c9da7cf1df97ae8fadcc2769e99d6be",
-    "source.json": "9eda2cdf3e5ab7374faac47af2b54568aa04502171f0f764855953ef7a8750b9",
-    "AI-SOURCES.md": "fa0606b7ca26fafe4431174c44dede52098f5929f16ef0a6642d5279aab0666c"
+    "surge/ai.list": "3537be4b34fe951e1552ad744b04dcb720958ec16b48c8b0cad2a791453b34b3",
+    "mihomo/ai.yaml": "5ea387ec76c758fc55a8737c9ecb32b32e0cbea5cfbb0d8871898c99c01275d7",
+    "source.json": "caf27dbed1ee1863225d900895f2e8b0497a916719b7113ccdab8b7a122d6f62",
+    "AI-SOURCES.md": "45710c52dabc5dd2b855a9e7dd9333a1dbf13dd554068b5c9be1d8edf9688169"
   }
 }
